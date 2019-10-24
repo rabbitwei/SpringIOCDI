@@ -19,8 +19,6 @@ public class ProductAction {
     private ProductService productService;
 
     public void add() {
-        System.out.println(productService);
-
         productService.add();
     }
 }

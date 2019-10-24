@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component("product")
 public class Product {
     public int getId() {
         return id;

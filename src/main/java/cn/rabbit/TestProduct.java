@@ -9,14 +9,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class TestProduct {
     public static void main(String[] args) {
 
-        //需要获取配置信息
-        ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
-
-        //注解将 ProductAction 添加到 IOC 容器中了
+        // 不论是注解模式，还是配置文件的方式，都需要加载配置文件
+       String resources = "applicationContext.xml";
+        ApplicationContext ac = new ClassPathXmlApplicationContext(resources);
         ProductAction productAction = (ProductAction) ac.getBean("productAction");
-        ProductAction productAction2 = (ProductAction) ac.getBean("productAction");
-        System.out.println(productAction == productAction2);
-
         productAction.add();
+
     }
 }

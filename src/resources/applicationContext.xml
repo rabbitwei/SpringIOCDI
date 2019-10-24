@@ -15,48 +15,11 @@
    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 
-    <!--无参构造函数创建对象-->
-    <bean id="product" class="cn.rabbit.pojo.Product"/>
-
-    <!--使用带参构造函数创建对象-->
-    <bean id="product2" class="cn.rabbit.pojo.Product">
-        <!--通过constructor这个节点来指定构造函数的参数类型、名称、第几个-->
-        <constructor-arg index="0" name="id" value="0"/>
-        <constructor-arg index="1" name="name" value="iPhone"/>
-        <constructor-arg index="2" name="price" value="7000"/>
-    </bean>
-
-    <!--constructor-arg 未免有点太长了，为了简化配置，Spring来提供了c名称空间
-        但是不能装配集合-->
-    <bean id="product6" class="cn.rabbit.pojo.Product" c:id="100" c:name="iPhone" c:price="1000"/>
-
-    <!--配置文件中使用工厂的静态方法返回对象-->
-    <!--工厂静态方法创建对象，直接使用class指向静态类，指定静态方法就行了-->
-    <bean id="product3" class="cn.rabbit.factory.ProductFactory" factory-method="getProduct"/>
-
-
-    <!--配置文件中使用工厂的非静态方法返回对象-->
-    <!--首先创建工厂对象-->
-    <bean id="factory" class="cn.rabbit.factory.ProductFactory"/>
-    <!--指定工厂对象和工厂方法-->
-    <bean id="product4" factory-bean="factory" factory-method="getProduct2"/>
-
-
-    <!--装载集合-->
-    <bean id="product5" class="cn.rabbit.pojo.Product">
-        <constructor-arg>
-            <list>
-                <value>12</value>
-                <value>10</value>
-                <value>1</value>
-                <value>1</value>
-            </list>
-        </constructor-arg>
-    </bean>
-    <context:annotation-config />
-    <bean id="productDAO" class="cn.rabbit.dao.ProductDAO"/>
-    <bean id="productService" class="cn.rabbit.service.ProductService"/>
-    <bean id="productAction" class="cn.rabbit.action.ProductAction" />
+    <!--使用注解-->
+    <!--1. 先引入context名称空间-->
+    <!--xmlns:context="http://www.springframework.org/schema/context"-->
+    <!--2. 开启注解扫描器, 需要指定包-->
+    <context:component-scan base-package="cn.rabbit"/>
 
 
 </beans>
